@@ -1,17 +1,17 @@
 
 const mongoose=require("mongoose");
-
+mongoose.set('strictQuery', true);
 const connectdb=async(DATABASE_URL)=>{
-    try{
-  const DB_OPTIONS={
-   dbname:'ludo_bettle_king'
-  }
-  await mongoose.connect(DATABASE_URL,DB_OPTIONS);
-  console.log("connection done..");
-  
-    }catch(err){
-        console.log(err);
-    }
+  await mongoose
+    .connect(DATABASE_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then((data) => {
+      console.log(`connection done...`);
+    }).catch((err)=>{
+      console.log(`Database is not connect for this error`,err);
+    });
 }
 
 module.exports=connectdb;

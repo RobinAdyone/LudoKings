@@ -23,26 +23,5 @@ router.post("/LivematchStartStatusUpdate",matchcontroller.LivematchStartStatusUp
 //LivematchStartStatusUpdate
 router.get("/getcurrenttime",matchcontroller.getCurrentTime);
 
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, './uploads')
-//     },
-//     filename: function (req, file, cb) {
-//       cb(null, file.originalname)
-//     }
-// })
-// var upload = multer({ storage: storage })
-// app.use(express.static(__dirname + '/public'));
-// app.use('/uploads', express.static('uploads'));
-
-// app.post('/profileupload', upload.single('userProfile'), function (req, res, next) {
-//     // req.file is the `profile-file` file
-//     // req.body will hold the text fields, if there were any
-//     console.log(JSON.stringify(req.file))
-//     var response = '<a href="/">Home</a><br>'
-//     response += "Files uploaded successfully.<br>"
-//     response += `<img src="${req.file.path}" /><br>`
-//     return res.send(response)
-//   })
 module.exports=router;
 
