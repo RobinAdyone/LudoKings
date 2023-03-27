@@ -1,0 +1,68 @@
+    {{> header}}
+   <!-- Page Container START -->
+            <div class="page-container">
+                
+
+                <!-- Content Wrapper START -->
+                <div class="main-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                               <div class="page-header">
+                                  <h2 class="header-title">Manage User</h2>
+                                    <div class="header-sub-title">
+                                       <nav class="breadcrumb breadcrumb-dash">
+                                        <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>                               
+                                        </nav>
+                                    </div>  
+                               </div> 
+                            </div>
+                             <div class="col-md-6 text-right">
+                                <a href="/admin/create_bet_list"><button type="button" class="btn btn-primary text-end">Create Bet List</button></a> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">                            
+                            <table class="table">
+                                <thead class="ml-5 ">
+                                    <tr class="text-center" >
+                                        {{!-- <th scope="col">S. No.</th> --}}
+                                        <th scope="col" >Unique_Id</th>
+                                        <th scope="col" >Bet_Code</th>
+                                        <th scope="col" >Amount</th>
+                                        
+                                        <th scope="col" class="pb-3" >Rank : Rank_Winning_Amount</th>
+                                       
+                                        
+                                        <th scope="col" class="pb-3 ">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each gamemode}}
+                                    <tr class="text-center" >
+                                        <td>{{this.unique_id}}</td>
+                                          <td >{{this.bet_code}}</td>
+                                        <td >{{this.amount}}</td>
+                                        <td >
+                                           {{#each this.rank_winning_amount}}
+                                            {{@key}}={{this}},
+                                            {{/each}}   
+                                        </td>
+                                           
+                                        <td  >Done</td>
+                                    </tr>
+                                     {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+                {{> footer}}
+                
+                
+            
+              
+              
