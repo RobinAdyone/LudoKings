@@ -19,12 +19,12 @@ console.log(__dirname + "/public/userprofile");
 const errorStatus = require("../errorStatus");
 const { query, json } = require("express");
 const { stringify } = require("querystring");
+
 app.use(upload.array());
 //profile upload start
 
 //profile upload end
 class matchcontroller {
-
   static updateUser = async (req, res) => {
     try {
       const { UserId, name, AvatarId } = req.body;
@@ -69,6 +69,7 @@ class matchcontroller {
     try {
       const { room_id, player_count, UserId, game_mode, bet_amount, bet_id } =
         req.body;
+      console.log("========", req.body);
       if (
         !room_id ||
         !player_count ||
@@ -116,11 +117,11 @@ class matchcontroller {
               const user_details = await userModel.findOne({
                 UserId: userId1[i],
               });
+              console.log("==", user_details);
               const TotalPlayedGame =
                 parseInt(user_details.TotalPlayedGame) + parseInt(1);
               const CurrentBalance =
-                parseFloat(user_details.CurrentBalance) -
-                parseFloat(bet_amount);
+                parseFloat(user_details.CurrentBalance) -  parseFloat(bet_amount);
               await userModel.findOneAndUpdate(
                 { UserId: userId1[i] },
                 {
@@ -186,6 +187,9 @@ class matchcontroller {
   static matchStartStatusUpdate = async (req, res) => {
     try {
       var { room_id, UserId, type } = req.body;
+
+      console.log("matchStart", req.body);
+
       if (!room_id || !UserId) {
         return res.json({
           code: errorStatus.allfieldrequired,
@@ -263,7 +267,7 @@ class matchcontroller {
           bet_status: 2,
         });
 
-        if (type == 0) {
+        if (type == '0') {
           if (
             parseInt(room_details.playerCount) - parseInt(game_count.length) ==
             1
@@ -331,11 +335,10 @@ class matchcontroller {
               update_match_histroy_win,
               { new: true }
             );
-
             console.log("winner");
           }
         }
-        if (type == 1) {
+        if (type == '1') {
           if (
             parseInt(room_details.playerCount) - parseInt(game_count.length) ==
             1
@@ -404,7 +407,6 @@ class matchcontroller {
               update_match_histroy_win,
               { new: true }
             );
-
             console.log("loose");
           }
         }
@@ -466,13 +468,7 @@ class matchcontroller {
 
   static LivematchStartStatusUpdate = async (req, res) => {
     try {
-      var {
-        room_id,
-        UserId,
-        type,
-        timeout,
-        totalpoint,
-      } = req.body;
+      var { room_id, UserId, type, timeout, totalpoint } = req.body;
 
       // var totalpoint=totalpoint.split(" ")[0];
 
@@ -561,7 +557,7 @@ class matchcontroller {
           if (type == 0) {
             if (
               parseInt(room_details.playerCount) -
-                parseInt(game_count.length) ==
+              parseInt(game_count.length) ==
               1
             ) {
               var user_id_find = await historyModel.findOne({
@@ -636,7 +632,7 @@ class matchcontroller {
           if (type == 1) {
             if (
               parseInt(room_details.playerCount) -
-                parseInt(game_count.length) ==
+              parseInt(game_count.length) ==
               1
             ) {
               var room_details = await matchModel.findOne({ roomId: room_id });
@@ -851,7 +847,7 @@ class matchcontroller {
           if (type == 0) {
             if (
               parseInt(room_details.playerCount) -
-                parseInt(game_count.length) ==
+              parseInt(game_count.length) ==
               1
             ) {
               var user_id_find = await historyModel.findOne({
@@ -926,7 +922,7 @@ class matchcontroller {
           if (type == 1) {
             if (
               parseInt(room_details.playerCount) -
-                parseInt(game_count.length) ==
+              parseInt(game_count.length) ==
               1
             ) {
               var room_details = await matchModel.findOne({ roomId: room_id });
@@ -1219,6 +1215,7 @@ class matchcontroller {
       });
     }
   };
+
   static Bet_deduction_create = async (req, res) => {
     try {
       const timestamp = Date.now();
@@ -1251,6 +1248,7 @@ class matchcontroller {
       });
     }
   };
+
   static config_list_all = async (req, res) => {
     // console.log(config_list_all);
     if (Object.keys(config_list_all).length === 0) {

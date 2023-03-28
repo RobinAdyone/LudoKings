@@ -1,27 +1,43 @@
-const express=require("express");
-const router=express.Router();
+const express = require("express");
+const {
+  matchStart,
+  getlastroomId,
+  matchStartStatusUpdate,
+  LeaderBoard,
+  Bet_List_create,
+  Bet_deduction_create,
+  config_list_all,
+  TransactionSave,
+  TransactionOfflineRequest,
+  Coin_List,
+  getTransactionHistory,
+  updateUser,
+  TransOfflineWithdrowRequest,
+  LivematchStartStatusUpdate,
+  getCurrentTime,
+} = require("../controllers/matchcontroller.js");
+const router = express.Router();
 
-
-const matchcontroller=require("../controllers/matchcontroller.js");
-router.post("/roomcreate",matchcontroller.matchStart);
-router.post("/getlastroomId",matchcontroller.getlastroomId);
-router.post("/matchStartStatusUpdate",matchcontroller.matchStartStatusUpdate);
+// matchStart
+router.post("/roomcreate", matchStart);
+router.post("/getlastroomId", getlastroomId);
+router.post("/matchStartStatusUpdate", matchStartStatusUpdate);
 // router.get("/getpublicurl",matchcontroller.getprofile);
-router.post("/leaderboard",matchcontroller.LeaderBoard);
-router.post("/Bet_List_create",matchcontroller.Bet_List_create);
-router.post("/Bet_deduction_create",matchcontroller.Bet_deduction_create);
-router.post("/config_list_all",matchcontroller.config_list_all);
-router.post("/transactionsave",matchcontroller.TransactionSave);
-router.post("/transactionoffline_save",matchcontroller.TransactionOfflineRequest);
-router.post("/coinlist",matchcontroller.Coin_List);
-router.post("/getTransactionHistory",matchcontroller.getTransactionHistory);
-router.post("/updateuser",matchcontroller.updateUser);
+router.post("/leaderboard", LeaderBoard);
+router.post("/Bet_List_create", Bet_List_create);
+router.post("/Bet_deduction_create", Bet_deduction_create);
+router.post("/config_list_all", config_list_all);
+router.post("/transactionsave", TransactionSave);
+router.post("/transactionoffline_save", TransactionOfflineRequest);
+router.post("/coinlist", Coin_List);
+router.post("/getTransactionHistory", getTransactionHistory);
+router.post("/updateuser", updateUser);
 
-router.post("/TransOfflineWithdrowRequest",matchcontroller.TransOfflineWithdrowRequest);
+router.post(
+  "/TransOfflineWithdrowRequest",TransOfflineWithdrowRequest);
 // router.post("/leader",matchcontroller.leader);
-router.post("/LivematchStartStatusUpdate",matchcontroller.LivematchStartStatusUpdate);
+router.post("/LivematchStartStatusUpdate",LivematchStartStatusUpdate);
 //LivematchStartStatusUpdate
-router.get("/getcurrenttime",matchcontroller.getCurrentTime);
+router.get("/getcurrenttime", getCurrentTime);
 
-module.exports=router;
-
+module.exports = router;

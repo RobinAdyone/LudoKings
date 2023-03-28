@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const userSchema = {
   name: { type: String, required: true },
   email: { type: String },
@@ -18,6 +19,7 @@ const userSchema = {
   otp: { type: Number, required: true },
   avatarId: { type: Number, default: 0 },
   status: { type: Number, required: true },
+  boatAmount:{ type: Number, default: 0 }
 };
 
 const matchSchema = {
@@ -26,8 +28,8 @@ const matchSchema = {
   game_mode: { type: Number, required: true },
   bet_amount: { type: Number, required: true },
   bet_id: { type: Number, required: true },
-  rank_available: { type: Number },
   left_available: { type: Number },
+  rank_available: { type: Number },
   status: { type: Number },
   Unique_id: { type: String, required: true },
   timestamp: { type: String },
@@ -44,6 +46,7 @@ const roomhistory = {
   status: { type: Number },
   timestamp: { type: String },
 };
+
 const gamemodeSchema = {
   title: { type: String, required: true },
   status: { type: Number, required: true },
@@ -81,6 +84,7 @@ const transactionSchema = {
   coin: { type: Number },
   coin_id: { type: Number },
 };
+
 const coinSchema = {
   unique_id: { type: Number, required: true },
   status: { type: Number, required: true },

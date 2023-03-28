@@ -61,6 +61,13 @@ app.use(
 require("./app/routes/admin.routes")(app);
 require("./app/routes/web.routes")(app);
 
+app.get("/test", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "server is working",
+  });
+});
+
 //admin panel end
 
 //create user
@@ -248,13 +255,11 @@ app.post("/createuser", upload1.array("userProfile"), async (req, res) => {
           // FINAL END
         }
       } else {
-        res
-          .status(201)
-          .send({
-            code: errorStatus.emailinvalid,
-            sms: "Email Invalid..",
-            status: 0,
-          });
+        res.status(201).send({
+          code: errorStatus.emailinvalid,
+          sms: "Email Invalid..",
+          status: 0,
+        });
       }
 
       //end validate phone number
@@ -349,14 +354,12 @@ app.post("/registerotp", upload1.array("userProfile"), async (req, res) => {
               });
             }
           }
-        }else {
-          res
-            .status(201)
-            .send({
-              code: errorStatus.emailinvalid,
-              sms: "Email Invalid..",
-              status: 0,
-            });
+        } else {
+          res.status(201).send({
+            code: errorStatus.emailinvalid,
+            sms: "Email Invalid..",
+            status: 0,
+          });
         }
       }
     }
@@ -451,14 +454,12 @@ app.post("/loginforotp", upload1.array("userProfile"), async (req, res) => {
               ...data,
             });
           }
-        }else {
-          res
-            .status(201)
-            .send({
-              code: errorStatus.emailinvalid,
-              sms: "Email Invalid..",
-              status: 0,
-            });
+        } else {
+          res.status(201).send({
+            code: errorStatus.emailinvalid,
+            sms: "Email Invalid..",
+            status: 0,
+          });
         }
       } else {
         return res.json({
@@ -546,14 +547,12 @@ app.post("/loginwithotp", upload1.array("userProfile"), async (req, res) => {
             }
             console.log(resdoc);
           }
-        }else {
-          res
-            .status(201)
-            .send({
-              code: errorStatus.emailinvalid,
-              sms: "Email Invalid..",
-              status: 0,
-            });
+        } else {
+          res.status(201).send({
+            code: errorStatus.emailinvalid,
+            sms: "Email Invalid..",
+            status: 0,
+          });
         }
         //generate otp
         function generateOTP() {
